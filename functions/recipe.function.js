@@ -9,4 +9,13 @@ const addRecipe = async (newRecipe) => {
   }
 };
 
-module.exports = { addRecipe };
+const getAllRecipes = async () => {
+  try {
+    const allRecipes = await Recipe.find();
+    return allRecipes;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { addRecipe, getAllRecipes };

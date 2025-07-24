@@ -1,5 +1,5 @@
 const express = require("express");
-const { addRecipe } = require("../functions/recipe.function");
+const { addRecipe, getAllRecipes } = require("../functions/recipe.function");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -11,6 +11,15 @@ router.post("/", async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: "Error adding recipe", error });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const allRecipes = await getAllRecipes();
+    res.status(200).json({ message: "All recipes are:", recipes: allRecipes });
+  } catch (error) {
+    res.status(500).json({ message: "Error reading all recipes", error });
   }
 });
 
