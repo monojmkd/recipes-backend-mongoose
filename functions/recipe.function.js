@@ -50,13 +50,9 @@ const getRecipeByDifficulty = async (difficulty) => {
 //update recipe's difficulty
 const updateRecipeDifficultyById = async (recipeId, dataToUpdate) => {
   try {
-    const recipe = await Recipe.findByIdAndUpdate(
-      { id: recipeId },
-      dataToUpdate,
-      {
-        new: true,
-      }
-    );
+    const recipe = await Recipe.findByIdAndUpdate(recipeId, dataToUpdate, {
+      new: true,
+    });
     return recipe;
   } catch (error) {
     throw error;
